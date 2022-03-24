@@ -1,5 +1,8 @@
 package com.exercise.movie.controller;
 
+import java.io.IOException;
+import java.util.List;
+
 import com.exercise.movie.dto.MovieDto;
 import com.exercise.movie.service.MovieRecommendationService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -16,9 +19,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.io.IOException;
-import java.util.List;
 
 @RestController
 @RequestMapping(path = "/v1/recommendations")
