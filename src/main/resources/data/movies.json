@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "name": "The Conjuring",
+    "platform": "HBO MAX",
+    "rating": 7.5,
+    "genre": "HORROR",
+    "info": "this movie is horror"
+  },
+  {
+    "id": 2,
+    "name": "The Grudge",
+    "platform": "Disney plus",
+    "rating": 4.3,
+    "genre": "HORROR",
+    "info": "this movie is horror"
+  },
+  {
+    "id": 3,
+    "name": "Free Guy",
+    "platform": "",
+    "rating": 8.0,
+    "genre": "COMEDY",
+    "info": "this movie is comedy"
+  },
+  {
+    "id": 4,
+    "name": "Life Is Beautiful",
+    "platform": "Prime Video",
+    "rating": 8.6,
+    "genre": "COMEDY",
+    "info": "this movie is comedy"
+  },
+  {
+    "id": 5,
+    "name": "Adam Project",
+    "platform": "Netflix",
+    "rating": 8.6,
+    "genre": "SCIFI",
+    "info": "this movie is comedy"
+  },
+  {
+    "id": 6,
+    "name": "Dhamaal",
+    "platform": "Netflix",
+    "rating": 8.6,
+    "genre": "COMEDY",
+    "info": "this movie is comedy"
+  },
+  {
+    "id": 6,
+    "name": "James Bond",
+    "platform": "Netflix",
+    "rating": 8.6,
+    "genre": "ACTION",
+    "info": "this movie is action movie"
+  },
+  {
+    "id": 7,
+    "name": "Don",
+    "platform": "Netflix",
+    "rating": 6.5,
+    "genre": "DRAMA",
+    "info": "this movie is DRAMA movie"
+  }
+]
