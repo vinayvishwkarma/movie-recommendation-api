@@ -6,7 +6,7 @@ import static org.junit.Assert.assertNotNull;
 import java.io.IOException;
 import java.util.List;
 
-import com.exercise.movie.dto.MovieDto;
+import com.exercise.movie.data.MovieDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,4 +29,5 @@ public class ResourceReaderUtilTest {
         assertEquals(expectedMovieDto.getName(), "Don");
         assertEquals(expectedMovieDto.getGenre().toString(), "DRAMA");
     }
+
 }

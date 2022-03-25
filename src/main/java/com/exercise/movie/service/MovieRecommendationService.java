@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.exercise.movie.dto.MovieDto;
+import com.exercise.movie.data.MovieDto;
 import com.exercise.movie.exception.RecommendationNotFoundException;
 import com.exercise.movie.util.ResourceReaderUtil;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,20 +21,17 @@ public class MovieRecommendationService {
     private Resource resourceFile;
 
     /**
-     * this method returns the movie based on the genre
-     *
-     * @param genre - movie genre
+     * returns the movie based on the genre
      */
-    //TODO : need to add persistent layer and we can fetch the data from db
     public List<MovieDto> recommendMoviesByGenre(final String genre) throws IOException {
-        List<MovieDto> movieDtos = ResourceReaderUtil.jsonToMovieDto(resourceFile);
-        List<MovieDto> recommendedMovieByGenre = movieDtos.stream()
+        List<MovieDto> movies = ResourceReaderUtil.jsonToMovieDto(resourceFile);
+        List<MovieDto> recommendedMoviesByGenre = movies.stream()
                 .filter(m -> m.getGenre().toString().equalsIgnoreCase(genre))
                 .collect(Collectors.toList());
-        if (CollectionUtils.isEmpty(recommendedMovieByGenre)) {
+        if (CollectionUtils.isEmpty(recommendedMoviesByGenre)) {
             throw new RecommendationNotFoundException(
                     String.format("movie not found for genre : %s", genre));
         }
-        return recommendedMovieByGenre;
+        return recommendedMoviesByGenre;
     }
 }

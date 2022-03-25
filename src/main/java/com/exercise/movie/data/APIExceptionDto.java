@@ -1,11 +1,11 @@
-package com.exercise.movie.exception;
+package com.exercise.movie.data;
 
 import java.util.Date;
 
 import lombok.Data;
 
 @Data
-public class APIException {
+public class APIExceptionDto {
 
     private String msg;
     private Date date;

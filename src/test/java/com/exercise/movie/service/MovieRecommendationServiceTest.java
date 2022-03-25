@@ -7,8 +7,9 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import com.exercise.movie.dto.MovieDto;
-import com.exercise.movie.util.Genre;
+import com.exercise.movie.data.Genre;
+import com.exercise.movie.data.MovieDto;
+import com.exercise.movie.exception.RecommendationNotFoundException;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -44,6 +45,16 @@ public class MovieRecommendationServiceTest {
         MovieDto m = dtos.get(0);
         assertEquals("Don", m.getName());
         assertEquals("DRAMA", m.getGenre().toString());
+    }
+
+    @Test(expected = RecommendationNotFoundException.class)
+    public void testRecommendNotFoundException() throws IOException {
+        movieRecommendationService.recommendMoviesByGenre("ERT");
+    }
+
+    @Test(expected = RecommendationNotFoundException.class)
+    public void testRecommendNotFoundExceptionForInvalidGenreString() throws IOException {
+        movieRecommendationService.recommendMoviesByGenre("123");
     }
 
     private MovieDto mockMovieDto() {

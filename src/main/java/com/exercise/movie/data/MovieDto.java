@@ -1,6 +1,5 @@
-package com.exercise.movie.dto;
+package com.exercise.movie.data;
 
-import com.exercise.movie.util.Genre;
 import lombok.Data;
 
 @Data

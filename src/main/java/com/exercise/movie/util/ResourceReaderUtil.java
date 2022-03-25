@@ -7,7 +7,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 
-import com.exercise.movie.dto.MovieDto;
+import com.exercise.movie.data.MovieDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -24,12 +24,13 @@ public class ResourceReaderUtil {
      * this util method to process the data from file and provide the MovieDto
      *
      * @param resource - file resource to read
-     * @return list<MovieDto> -  list of movies prasent in file
+     * @return list<MovieDto> -  list of movies present in file
      */
     public static List<MovieDto> jsonToMovieDto(Resource resource) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         List<MovieDto> movieDtoList;
-        try (Reader reader = new InputStreamReader(resource.getInputStream(), StandardCharsets.UTF_8)) {
+        try (Reader reader = new InputStreamReader(resource.getInputStream(),
+                StandardCharsets.UTF_8)) {
             movieDtoList = Arrays.asList(objectMapper.readValue(reader, MovieDto[].class));
             return movieDtoList;
         } catch (IOException ioe) {

@@ -7,8 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.exercise.movie.Application;
-import com.exercise.movie.dto.MovieDto;
-import com.exercise.movie.util.Genre;
+import com.exercise.movie.data.Genre;
+import com.exercise.movie.data.MovieDto;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -64,13 +64,38 @@ public class RecommendationIntegrationTest {
 
     @Test
     public void testRecommendationNotFoundException() {
-        String url = "http://localhost:" + randomServerPort + "/v1/recommendations/movies/123";
+        String url = "http://localhost:" + randomServerPort + "/v1/recommendations/movies"
+                + "/FAMILY";
         HttpHeaders headers = new HttpHeaders();
         HttpEntity request = new HttpEntity<>(headers);
         ResponseEntity<String> response = this.restTemplate.
                 exchange(url, HttpMethod.GET, request, String.class);
         assertEquals(response.getStatusCode(), HttpStatus.NOT_FOUND);
         assertTrue(response.getBody().contains("movie not found for genre"));
+    }
+
+    @Test
+    public void testIllegalArgumentException() {
+        String url = "http://localhost:" + randomServerPort + "/v1/recommendations/movies"
+                + "/123";
+        HttpHeaders headers = new HttpHeaders();
+        HttpEntity request = new HttpEntity<>(headers);
+        ResponseEntity<String> response = this.restTemplate.
+                exchange(url, HttpMethod.GET, request, String.class);
+        assertEquals(response.getStatusCode(), HttpStatus.BAD_REQUEST);
+        assertTrue(response.getBody().contains("No numeric or alpha numeric string are allowed"));
+    }
+
+    @Test
+    public void testIllegalArgumentExceptionForInvalidGenreString() {
+        String url = "http://localhost:" + randomServerPort + "/v1/recommendations/movies"
+                + "/ETR";
+        HttpHeaders headers = new HttpHeaders();
+        HttpEntity request = new HttpEntity<>(headers);
+        ResponseEntity<String> response = this.restTemplate.
+                exchange(url, HttpMethod.GET, request, String.class);
+        assertEquals(response.getStatusCode(), HttpStatus.BAD_REQUEST);
+        assertTrue(response.getBody().contains("Invalid genre string"));
     }
 
     private MovieDto mockMovieDto() {

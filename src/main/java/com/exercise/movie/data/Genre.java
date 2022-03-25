@@ -1,4 +1,4 @@
-package com.exercise.movie.util;
+package com.exercise.movie.data;
 
 public enum Genre {
     HORROR,
@@ -7,5 +7,6 @@ public enum Genre {
     THRILLER,
     SPYTHRILLER,
     COMEDY,
+    FAMILY,
     DRAMA;
 }

@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 public class HttpUtil {
 
     /**
-     * method can be used to call any third party api like Nelfix ,IMDB to fetch the latest record
+     * Method can be used to call any third party api like Nelfix ,IMDB to fetch the latest record
      * for the movie
      *
      * @param url

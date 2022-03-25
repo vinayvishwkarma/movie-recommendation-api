@@ -9,9 +9,9 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import com.exercise.movie.dto.MovieDto;
+import com.exercise.movie.data.Genre;
+import com.exercise.movie.data.MovieDto;
 import com.exercise.movie.service.MovieRecommendationService;
-import com.exercise.movie.util.Genre;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,24 +29,36 @@ public class MovieRecommendationControllerTest {
     @Mock
     private MovieRecommendationService movieRecommendationService;
 
-    List<MovieDto> movieDtoList ;
+    List<MovieDto> movieDtoList;
 
     @Before
     public void setUp() throws IOException {
         movieDtoList = Arrays.asList(mockMovieDto());
-        when(movieRecommendationService.recommendMoviesByGenre(any(String.class))).thenReturn(movieDtoList);
+        when(movieRecommendationService.recommendMoviesByGenre(any(String.class))).thenReturn(
+                movieDtoList);
     }
 
     @Test
-    public void testRecommendMovies(){
-       ResponseEntity<List<MovieDto>> response =  recommendationController.recommendMovies("DRAMA");
-       assertNotNull(response);
-       MovieDto m = response.getBody().get(0);
-       assertEquals(m.getName(), "Don");
-       assertEquals(m.getPlatform(), "Netflix");
+    public void testRecommendMovies() {
+        ResponseEntity<List<MovieDto>> response = recommendationController.recommendMovies("DRAMA");
+        assertNotNull(response);
+        MovieDto m = response.getBody().get(0);
+        assertEquals(m.getName(), "Don");
+        assertEquals(m.getPlatform(), "Netflix");
     }
 
-    private MovieDto mockMovieDto(){
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testRequestValidation() {
+        recommendationController.recommendMovies("123");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testRequestValidationWithNull() {
+        recommendationController.recommendMovies(null);
+    }
+
+    private MovieDto mockMovieDto() {
         MovieDto movieDto = new MovieDto();
         movieDto.setGenre(Genre.DRAMA);
         movieDto.setInfo("this movie is DRAMA movie");
